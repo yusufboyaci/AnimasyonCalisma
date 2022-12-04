@@ -15,31 +15,71 @@
   </head>
   <body>
     <div id="demo">
-      <button v-on:click="show = !show">Toggle</button>
+      <button class="btn btn-primary" v-on:click="show = !show">Toggle</button>
       <br /><br />
       <div class="row">
-        <transition name="fade">
+        <!-- <transition name="fade">
+          <p v-if="show" key="hello" class="text-primary">hello</p>
+          <p v-if="!show" key="merhaba" class="text-danger">Merhaba</p>
+        </transition> -->
+        <br /><br />
+        <transition name="p">
           <p v-if="show" key="hello" class="text-primary">hello</p>
           <p v-if="!show" key="merhaba" class="text-danger">Merhaba</p>
         </transition>
       </div>
     </div>
     <style>
-    
-      .fade-enter {
+      .p-enter {
+        opacity: 0;
+      }
+      .p-enter-active {
+        animation: slide-in 1s ease-out forwards;
+        transition: opacity 0.5s;
+      }
+      .p-leave {
+      }
+      .p-leave-active {
+        animation: slide-out 1s ease-out forwards;
+        transition: opacity 1s;
+        opacity: 0;
+        position: absolute;
+      }
+     
+      @keyframes slide-in {
+        from {
+          transform: translateX(20px);
+        }
+
+        to {
+          transform: translateX(0px);
+        }
+      }
+
+      @keyframes slide-out {
+        from {
+          transform: translateX(0px);
+        }
+
+        to {  
+          transform: translateX(20px);
+        }
+      }
+
+
+      /* .fade-enter {
         opacity: 0;
       }
       .fade-enter-active {
         transition: opacity 1s;
       }
       .fade-leave {
-        opacity:1;
+        opacity: 1;
       }
       .fade-leave-active {
-        transition: opacity .1s;
+        transition: opacity 0.1s;
         opacity: 0;
-      }
-      
+      } */
     </style>
 
     <script>
